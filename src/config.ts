@@ -1,5 +1,6 @@
 /* Setting things up. */
 import Env from 'dotenv'
+import Puppeteer from 'puppeteer'
 import Chrome from 'chrome-aws-lambda'
 
 Env.config()
@@ -15,10 +16,11 @@ export const COOKIES_PATH = __dirname + '/cookies.json'
 
 export const puppeteer = async () => {
   const executablePath = await Chrome.executablePath
-  return Chrome.puppeteer.launch({
+  const puppeteer = Chrome.headless ? Chrome.puppeteer : Puppeteer
+  return puppeteer.launch({
     executablePath,
     ignoreHTTPSErrors: true,
-    headless: Chrome.headless,
-    args: ['--no-sandbox']
+    headless: env.NODE_ENV !== 'development',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
   })
 }
