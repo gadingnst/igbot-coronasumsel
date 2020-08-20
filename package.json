@@ -10,7 +10,6 @@
     "dev": "nodemon --exec 'ts-node' server.ts",
     "setup": "ts-node generate.ts",
     "vercel:dev": "vercel dev",
-    "prestart": "tsc --removeComments",
     "postinstall": "ts-node generate.ts"
   },
   "repository": {
