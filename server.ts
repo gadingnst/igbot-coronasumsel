@@ -4,6 +4,7 @@ import Api from './src/api'
 
 const server = Express()
 const port = process.env.PORT || 9600
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 server.use(Cors())
 server.use(Api)
