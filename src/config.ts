@@ -19,9 +19,6 @@ export const puppeteer = async () => {
     executablePath,
     ignoreHTTPSErrors: true,
     headless: Chrome.headless,
-    args: [
-      '--no-sandbox',
-      '--disable-gpu'
-    ]
+    args: ['--no-sandbox']
   })
 }
