@@ -14,5 +14,5 @@ server.get('*', (_, res) => {
 })
 
 server.listen(port, async () => {
-  console.info(`> Bot served at: http://localhost:${port}\n`)
+  console.info('> Bot served at port:', port)
 })

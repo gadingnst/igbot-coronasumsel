@@ -9,7 +9,7 @@ type Screenshot<T> = {
 }
 
 export async function screenshot<T>(page: Page, cb: () => T, type: ImageType): Promise<Screenshot<T>> {
-  const data = <T>await page.evaluate(cb)
+  const data = <T>(await page.evaluate(cb) || {})
   return { data, image: await page.screenshot({ type }) }
 }
 
@@ -33,7 +33,7 @@ export async function instantScreenshot<T>(url: string, cb: () => T, type: Image
   }
 }
 
-export const timeFormat = (dateTz: string | number, locales: string = 'id-ID'): string => {
+export const timeFormat = (dateTz: string|number, locales: string = 'en-ID'): string => {
   const options: Intl.DateTimeFormatOptions = {
     hour: 'numeric',
     minute: 'numeric'

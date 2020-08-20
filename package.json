@@ -6,11 +6,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "build": "tsc --removeComments",
-    "dev": "nodemon --exec 'ts-node' server.ts",
-    "bot:connect": "ts-node generate.ts",
+    "build": "tsc",
+    "dev": "nodemon",
+    "bot:connect": "node generate.js",
     "vercel:dev": "vercel dev",
-    "postinstall": "ts-node generate.ts"
+    "postinstall": "tsc && node generate.js"
   },
   "repository": {
     "url": "https://github.com/sutanlab/igbot-coronasumsel"
@@ -21,7 +21,6 @@
     "express": "^4.17.1",
     "instagram-private-api": "^1.39.1",
     "puppeteer": "^2.1.0",
-    "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "vercel": "^19.2.0"
   },

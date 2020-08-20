@@ -47,7 +47,7 @@ export const publishPost = async () => {
   if (error) throw new Error(error)
   const file = image as Buffer
   const time = timeFormat(new Date().toISOString())
-  const caption = `Update corona sumsel per-${date}, Jam ${time}.\n.\n.\n#corona #coronapalembang #coronasumsel #coronasumselprov #covid19 #covidpalembang #covidsumsel #updatecovid #covidindonesia`
+  const caption = `Update corona sumsel per-${date}, Jam ${time}.\n.\n.\n${getRandomTags()}`
   console.info('> Screenshot Prepared.')
 
   const {
@@ -66,4 +66,27 @@ export const publishPost = async () => {
   const result = await instagram.publish.photo({ file, caption, location })
   console.info(`> Screenshot published at: ${new Date().toLocaleString()}.\n`)
   return result
+}
+
+const getRandomTags = (amount: number = 8) => {
+  let tags = ''
+  const possibleTags = [
+    'corona', 'coronapalembang', 'coronasumsel',
+    'coronasumselprov', 'covid19', 'covidpalembang',
+    'covidsumsel', 'updatecovid', 'covidindonesia',
+    'coronaindonesia', 'coronaprovinsi', 'indonesia',
+    'palembang', 'sumsel', 'semateraselatan',
+    'viruscorona', 'laporancorona', 'sumsel',
+    'palembanginfo', 'kemenkes', 'kesehatan',
+    'kemenkes_ri', 'coronavirus', 'covid',
+    'ncov19', 'psbb', 'newnormal',
+  ]
+
+  for (let i = 0; i < amount; i++) {
+    tags += `#${possibleTags[
+      ~~(Math.random() * possibleTags.length)
+    ]} `
+  }
+  
+  return tags
 }

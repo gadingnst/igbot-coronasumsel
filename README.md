@@ -1,6 +1,6 @@
 # igbot-coronasumsel
 
-> An Instagram bot that used to update covid19 data of South Sumatra. Deploy on [Vercel](https://vercel.com), Data comes from [corona.sumselprov.go.id](https://corona.sumselprov.go.id)
+> An Instagram bot that used to update covid19 data of South Sumatra. Deploy on [Vercel](https://vercel.com), Data comes from [corona.sumselprov.go.id](http://corona.sumselprov.go.id)
 
 ## My Running App
 ### [Website](https://coronasumsel.sutanlab.id)
