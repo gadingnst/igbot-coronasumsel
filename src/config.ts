@@ -3,7 +3,8 @@ import Env from 'dotenv'
 import Chrome from 'chrome-aws-lambda'
 
 Env.config()
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+ 
 const env = process.env
 
 export const IG_PROXY = env.IG_PROXY

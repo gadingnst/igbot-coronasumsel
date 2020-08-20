@@ -24,7 +24,7 @@ export async function instantScreenshot<T>(url: string, cb: () => T, type: Image
       height: 680,
       deviceScaleFactor: 1
     })
-    await page.goto(url, { waitUntil: 'load', timeout: 0 })
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 })
     await pending.waitForAllXhrFinished()
     const result = await screenshot(page, cb, type)
     return result
