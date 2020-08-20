@@ -5,10 +5,12 @@
   "main": "server.ts",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node server.ts",
+    "start": "node server.js",
+    "build": "tsc --removeComments",
     "dev": "nodemon --exec 'ts-node' server.ts",
     "setup": "ts-node generate.ts",
     "vercel:dev": "vercel dev",
+    "prestart": "tsc --removeComments",
     "postinstall": "ts-node generate.ts"
   },
   "repository": {

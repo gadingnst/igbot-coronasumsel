@@ -8,7 +8,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 server.use(Cors())
 server.use(Api)
-
+server.use(Express.static(`${__dirname}/public`))
 server.get('*', (_, res) => {
   res.sendFile(`${__dirname}/public/index.html`)
 })

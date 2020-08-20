@@ -1,3 +1,5 @@
 node_modules
 .env
 cookies.json
+*.js
+!public/*.js
