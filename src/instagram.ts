@@ -16,31 +16,12 @@ export const setup = async (check = false) => {
       console.info('> Login Skipped, Cookies Exists!')
       throw flag
     }
-
-    const runTask = async () => {
-      try {
-        console.info('> Logging In...')
-        await ig.simulate.preLoginFlow()
-        await ig.account.login(IG_USERNAME as string, IG_PASSWORD as string)
-        const cookies = await ig.state.serializeCookieJar()
-        await Fs.promises.writeFile(COOKIES_PATH, JSON.stringify(cookies))
-        console.info('> Login Cookies Stored!\n')
-      } catch (error) {
-        const { response } = error
-
-        if (response?.body) {
-          const { message } = response.body
-          if (message.includes('try again')) {
-            console.error('> Too many request, will trying again in 8s...\n')
-            return setTimeout(runTask, 8000)
-          }
-        }
-
-        throw error
-      }
-    }
-
-    await runTask()
+    console.info('> Logging In...')
+    await ig.simulate.preLoginFlow()
+    await ig.account.login(IG_USERNAME as string, IG_PASSWORD as string)
+    const cookies = await ig.state.serializeCookieJar()
+    await Fs.promises.writeFile(COOKIES_PATH, JSON.stringify(cookies))
+    console.info('> Login Cookies Stored!\n')
   } catch (error) {
     if (!error.cache) throw error
     const loginCookies = require(COOKIES_PATH)
