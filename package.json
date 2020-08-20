@@ -19,7 +19,6 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "instagram-private-api": "^1.39.1",
-    "pending-xhr-puppeteer": "^2.3.2",
     "puppeteer": "^2.1.0",
     "puppeteer-core": "^5.2.1",
     "ts-node": "^8.10.2",

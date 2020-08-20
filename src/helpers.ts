@@ -1,5 +1,4 @@
 import { Page } from 'puppeteer'
-import { PendingXHR } from 'pending-xhr-puppeteer'
 import { puppeteer } from './config'
 
 type ImageType = 'jpeg'|'png'
@@ -18,14 +17,12 @@ export async function instantScreenshot<T>(url: string, cb: () => T, type: Image
   const browser = await puppeteer()
   try {
     const page = await browser.newPage()
-    const pending = new PendingXHR(page)
     await page.setViewport({
       width: 960,
       height: 680,
       deviceScaleFactor: 1
     })
-    await page.goto(url, { waitUntil: 'networkidle2', timeout: 0 })
-    await pending.waitForAllXhrFinished()
+    await page.goto(url, { waitUntil: 'load', timeout: 0 })
     const result = await screenshot(page, cb, type)
     return result
   } catch (error) {
