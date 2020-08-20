@@ -1,0 +1,14 @@
+name: Instabot corona.sumsel
+
+on:
+  schedule:
+    - cron: "24 * * * *"
+
+jobs:
+  bot-task:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_CODE: ${{ secrets.CODE }}
+    steps:
+      - name: Trigger publish post
+        run: curl https://coronasumsel.sutanlab.id/publish?secret=$SECRET_CODE
