@@ -1,6 +1,6 @@
-import { Router } from 'express'
-import { SECRET_CODE } from './config'
-import { publishPost } from './instagram'
+const { Router } = require('express')
+const { SECRET_CODE } = require('./config')
+const { publishPost } = require('./instagram')
 
 const route = Router()
 
@@ -32,4 +32,4 @@ route.get('/publish', async (req, res) => {
   }
 })
 
-export default route
+module.exports = route

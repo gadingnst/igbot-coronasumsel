@@ -1,5 +1,5 @@
-import Express from 'express'
-import Api from './src/api'
+const Express = require('express')
+const Api = require('./src/api')
 
 const server = Express()
 const port = process.env.PORT || 9600

@@ -1,9 +1,9 @@
-import Fs from 'fs'
-import { IgApiClient } from 'instagram-private-api'
-import { instantScreenshot } from './helpers'
-import { IG_PROXY, IG_USERNAME, IG_PASSWORD, COOKIES_PATH } from './config'
+const Fs = require('fs')
+const { IgApiClient } = require('instagram-private-api')
+const { instantScreenshot } = require('./helpers')
+const { IG_PROXY, IG_USERNAME, IG_PASSWORD, COOKIES_PATH } = require('./config')
 
-export const setup = async (check = false) => {
+const setup = async (check = false) => {
   const ig = new IgApiClient()
   IG_PROXY && (ig.state.proxyUrl = IG_PROXY)
   IG_USERNAME && ig.state.generateDevice(IG_USERNAME)
@@ -18,7 +18,7 @@ export const setup = async (check = false) => {
     }
     console.info('> Logging In...')
     await ig.simulate.preLoginFlow()
-    await ig.account.login(IG_USERNAME as string, IG_PASSWORD as string)
+    await ig.account.login(IG_USERNAME, IG_PASSWORD)
     const cookies = await ig.state.serializeCookieJar()
     await Fs.promises.writeFile(COOKIES_PATH, JSON.stringify(cookies))
     console.info('> Login Cookies Stored!\n')
@@ -32,20 +32,19 @@ export const setup = async (check = false) => {
 }
 
 
-export const publishPost = async () => {
+const publishPost = async () => {
   console.info('> Preparing screenshot...')
-  const { data: { date }, image, error } = await instantScreenshot('http://corona.sumselprov.go.id', () => {
+  const { data: { date }, image: file, error } = await instantScreenshot('http://corona.sumselprov.go.id', () => {
     const target = document.querySelectorAll('#sppb-addon-wrapper-1584204545552')[1]
-    const captWrapper: any = document.querySelectorAll('.sppb-addon.sppb-addon-text-block.sppb-text-center')[1]
-    const header: any = document.querySelector('#sp-header')
-    const date: string = captWrapper.innerText.split('\n')[1]
+    const captWrapper = document.querySelectorAll('.sppb-addon.sppb-addon-text-block.sppb-text-center')[1]
+    const header = document.querySelector('#sp-header')
+    const date = captWrapper.innerText.split('\n')[1]
     header.style.display = 'none'
     target.scrollIntoView()
     return { date }
   })
 
   if (error) throw new Error(error)
-  const file = image as Buffer
   const caption = `Update corona sumsel per-${date}.\n.\n.\n#corona #coronapalembang #coronasumsel #coronasumselprov #covid19 #covidpalembang #covidsumsel #updatecovid #covidindonesia`
   console.info('> Screenshot Prepared.')
 
@@ -66,3 +65,5 @@ export const publishPost = async () => {
   console.info(`> Screenshot published at: ${new Date().toLocaleString()}.\n`)
   return result
 }
+
+module.exports = { setup, publishPost }

@@ -1,4 +1,4 @@
-import { setup } from './src/instagram'
+const { setup } = require('./src/instagram')
 
 console.info('> Conecting to Instagram Account..')
 setup(true).then(() => {
