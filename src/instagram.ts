@@ -53,7 +53,7 @@ export const setup = async (check = false) => {
 
 export const publishPost = async () => {
   console.info('> Preparing screenshot...')
-  const { data: { date }, image, error } = await instantScreenshot('https://corona.sumselprov.go.id', () => {
+  const { data: { date }, image, error } = await instantScreenshot('http://corona.sumselprov.go.id', () => {
     const target = document.querySelectorAll('#sppb-addon-wrapper-1584204545552')[1]
     const captWrapper: any = document.querySelectorAll('.sppb-addon.sppb-addon-text-block.sppb-text-center')[1]
     const header: any = document.querySelector('#sp-header')

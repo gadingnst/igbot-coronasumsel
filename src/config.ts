@@ -17,8 +17,11 @@ export const puppeteer = async () => {
   const executablePath = await Chrome.executablePath
   return Chrome.puppeteer.launch({
     executablePath,
-    args: Chrome.args,
+    ignoreHTTPSErrors: true,
     headless: Chrome.headless,
-    ignoreHTTPSErrors: true
+    args: [
+      '--no-sandbox',
+      '--disable-gpu'
+    ]
   })
 }
