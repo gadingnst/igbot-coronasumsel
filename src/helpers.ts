@@ -32,3 +32,11 @@ export async function instantScreenshot<T>(url: string, cb: () => T, type: Image
     browser.close()
   }
 }
+
+export const timeFormat = (dateTz: string | number, locales: string = 'id-ID'): string => {
+  const options: Intl.DateTimeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric'
+  }
+  return new Date(dateTz).toLocaleString(locales, options)
+}

@@ -7,9 +7,9 @@
 ### [Instagram Account](https://instagram.com/corona.sumsel)
 
 ## Quick Try
-1. Create an Instagram account.
-2. Update the .env file with your secret code, instagram username and password.
-3. Deploy your application wherever you want, In this case, i deployed in [Vercel](https://vercel.com)
+1. Create an [Instagram account](https://www.instagram.com/accounts/emailsignup/).
+2. Update the `.env` file with your `SECRET_CODE`, `IG_USERNAME` and `IG_PASSWORD`. `IG_PROXY` are optional.
+3. Deploy your application wherever you want, In this case, i deployed in [Vercel](https://vercel.com) and [Heroku](https://www.heroku.com/)
 4. Set up a free service ([cron-job.org](https://cron-job.org/en/), [Uptime Robot](https://uptimerobot.com/), or a similar one) to wake up your bot every hour you want. Then, use `https://{YOUR_DOMAIN}/publish?secret={YOUR_SECRET_CODE}` as a URL to which to send the HTTP request.
 
 ## Available Scripts
@@ -18,12 +18,17 @@
 $ yarn install
 ```
 
-### Connect Instagram Account
+### Connect To Instagram Account
 ```bash
-$ yarn setup
+$ yarn bot:connect
 ```
 
-### Start Server
+### Build Production Server
+```bash
+$ yarn build
+```
+
+### Start Production Server
 ```bash
 $ yarn start
 ```
@@ -31,6 +36,11 @@ $ yarn start
 ### Start Development Server
 ```bash
 $ yarn dev
+```
+
+### Start Vercel Development Serverless
+```bash
+$ yarn vercel:dev
 ```
 
 ## Support Me

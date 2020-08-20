@@ -1,6 +1,6 @@
 import Fs from 'fs'
 import { IgApiClient } from 'instagram-private-api'
-import { instantScreenshot } from './helpers'
+import { instantScreenshot, timeFormat } from './helpers'
 import { IG_PROXY, IG_USERNAME, IG_PASSWORD, COOKIES_PATH } from './config'
 
 export const setup = async (check = false) => {
@@ -13,7 +13,7 @@ export const setup = async (check = false) => {
     if (!check) throw flag
     console.info('> Checking Cookies...')
     if (Fs.existsSync(COOKIES_PATH)) {
-      console.info('> Login Skipped, Cookies Exists!')
+      console.info('> Login Skipped, Cookies Exists! If you want to re-login, try to remove `cookies.json`.')
       throw flag
     }
     console.info('> Logging In...')
@@ -46,7 +46,8 @@ export const publishPost = async () => {
 
   if (error) throw new Error(error)
   const file = image as Buffer
-  const caption = `Update corona sumsel per-${date}.\n.\n.\n#corona #coronapalembang #coronasumsel #coronasumselprov #covid19 #covidpalembang #covidsumsel #updatecovid #covidindonesia`
+  const time = timeFormat(new Date().toISOString())
+  const caption = `Update corona sumsel per-${date}, Jam ${time}.\n.\n.\n#corona #coronapalembang #coronasumsel #coronasumselprov #covid19 #covidpalembang #covidsumsel #updatecovid #covidindonesia`
   console.info('> Screenshot Prepared.')
 
   const {
