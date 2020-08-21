@@ -2,11 +2,11 @@
 
 > An Instagram bot that used to update covid19 data of South Sumatra. Deploy on [Vercel](https://vercel.com), Data comes from [corona.sumselprov.go.id](http://corona.sumselprov.go.id)
 
-## My Running App
+## My Running Bot
 ### [Website](https://coronasumsel.sutanlab.id)
 ### [Instagram Account](https://instagram.com/corona.sumsel)
 
-## Quick Try
+## Quick Setup
 1. Create an [Instagram account](https://www.instagram.com/accounts/emailsignup/).
 2. Update the `.env` file with your `SECRET_CODE`, `IG_USERNAME` and `IG_PASSWORD`. `IG_PROXY` are optional.
 3. Deploy your application wherever you want, In this case, i deployed in [Vercel](https://vercel.com) and [Heroku](https://www.heroku.com/)
@@ -52,5 +52,3 @@ $ yarn vercel:dev
 
 ---
 Best Regards, Sutan Gading Fadhillah Nasution.
-
-\ ゜ o ゜)ノ

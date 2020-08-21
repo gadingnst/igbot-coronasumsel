@@ -1,6 +1,6 @@
 import Fs from 'fs'
 import { IgApiClient } from 'instagram-private-api'
-import { instantScreenshot, timeFormat } from './helpers'
+import { instantScreenshot, dateFormat } from './helpers'
 import { IG_PROXY, IG_USERNAME, IG_PASSWORD, COOKIES_PATH } from './config'
 
 export const setup = async (check = false) => {
@@ -35,7 +35,7 @@ export const setup = async (check = false) => {
 export const publishPost = async () => {
   console.info('> Preparing screenshot...')
   const { data: { date }, image, error } = await instantScreenshot('http://corona.sumselprov.go.id', () => {
-    const target = document.querySelectorAll('#sppb-addon-wrapper-1584204545552')[1]
+    const target = document.querySelectorAll('.page-content')[1]
     const captWrapper: any = document.querySelectorAll('.sppb-addon.sppb-addon-text-block.sppb-text-center')[1]
     const header: any = document.querySelector('#sp-header')
     const date: string = captWrapper.innerText.split('\n')[1]
@@ -46,8 +46,9 @@ export const publishPost = async () => {
 
   if (error) throw new Error(error)
   const file = image as Buffer
-  const time = timeFormat(new Date().toISOString())
-  const caption = `Update corona sumsel per-${date}, Jam ${time}.\n.\n.\n${getRandomTags()}`
+  const nowDate = dateFormat('dddd, DD MMMM YYYY')
+  const nowTime = dateFormat('HH:mm')
+  const caption = `Data corona provinsi Sumatera Selatan per-${date}. Diupdate pada: ${nowDate} Jam ${nowTime}.\n.\n.\n${getRandomTags()}`
   console.info('> Screenshot Prepared.')
 
   const {
